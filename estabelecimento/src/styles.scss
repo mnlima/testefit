@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+* {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #55606e;
+}
+
+html, body {
+  height: 100%;
+  
+  background: #edf0f2;
+  box-sizing: border-box;
+}
+
+input,
+select {
+  height: 30px;
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 0 8px;
+  font-size: 16px;
+  border: 1px solid #999999;
+  border-radius: 3px;
+}
+
+.container {
+  
+}
+
+.content {
+  width: 50%;
+  margin: auto;
+  padding: 20px 30px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.2);
+}
+
+button {
+  background: rgb(13, 219, 96) !important;
+  margin-left: 0;
+  margin-right: 0;
+  text-transform: none;
+  color: #eee !important;
+  font-family: helvetica ;
+  opacity: .8;
+  text-transform: uppercase;
+  &:hover {
+    opacity: 1;
+  }
+
+  &--disabled {
+    opacity: .01 !important;
+  }
+}
