@@ -1,0 +1,19 @@
+table {
+  margin: 25px 0 0;
+}
+tbody{
+  tr {
+    opacity: .7;
+    background-color: #f7f7f9;
+    
+    &:hover {
+      border: none;
+      background-color: #e1e1ee;
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+i { 
+  color: #FF0000; 
+}
