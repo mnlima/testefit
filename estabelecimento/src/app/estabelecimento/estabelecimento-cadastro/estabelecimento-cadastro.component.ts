@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UFModel } from 'src/app/utils/uf.utils';
+
 import { EstabelecimentoService } from 'src/app/services/estabelecimento/estabelecimento.service';
+import { UFModel } from 'src/app/utils/uf.utils';
+import { DisplayedColumnsModel } from './../../components/tabela/tabela.component';
 
 @Component({
   selector: 'fit-estab-cadastro',
@@ -23,8 +25,18 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     { name: 'Inativo', value: '0' }
   ]
 
+  displayedColumns: DisplayedColumnsModel[] = [
+    { label: 'Razão Social', field: 'razaoSocial' },
+    { label: 'Nome Fantasia', field: 'nomeFantasia' },
+    { label: 'E-mail', field: 'email' },
+    { label: 'Endereco', field: 'endereco' },
+    { label: 'Categoria', field: 'categoria' },
+    { label: 'Status', field: 'status' },
+  ];
+
   UFList = [];
   estabelecimentoGroup: FormGroup;
+  dataList = [];
 
   constructor(
     private fb: FormBuilder,
@@ -44,27 +56,33 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   createForm() {
     this.estabelecimentoGroup = this.fb.group(
       {
-        RAZAO_SOCIAL: ['', Validators.required],
-        CNPJ: ['', Validators.required],
-        EMAIL: [''],
-        ENDERECO: [''],
-        CIDADE: [''],
-        ESTADO: [''],
-        TELEFONE: [''],
-        DATA_CADASTRO: [''],
-        CATEGORIA: [''],
-        STATUS: [''],
-        AGENCIA: [''],
-        CONTA: ['']
+        razaoSocial: ['', Validators.required],
+        nomeFantasia: [''],
+        cnpj: ['', Validators.required],
+        email: [''],
+        endereco: [''],
+        cidade: [''],
+        estado: [''],
+        telefone: [''],
+        dataCadastro: [''],
+        categoria: [''],
+        status: [''],
+        agencia: [''],
+        conta: ['']
       }
     )
   }
 
   onCadastrar() {
-    debugger
+    if (!this.estabelecimentoGroup.valid) {
+      return;
+    }
+    
     this.estabelecimentoService.insert(this.estabelecimentoGroup.value).then(res => {
+      console.log(res)
+      this.dataList = [...this.dataList, ...[res]];
     }, reject => {
-      
+
     }).finally(() => {
 
     });

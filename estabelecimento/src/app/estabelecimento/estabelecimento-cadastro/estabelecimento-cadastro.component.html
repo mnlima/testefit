@@ -1,76 +1,91 @@
 <div class="col-12 d-flex justify-content-center tittle tittle-collor"><span>Estabelecimento</span></div>
 <div class="content">
   <form class="form-row" [formGroup]="estabelecimentoGroup">
-    <div class="col-md-6 col-lg-7 col-xl-3">
+    <div class="col-lg-7 col-xl-4">
       <label for="">Razão Social *</label>
-      <input type="text" formControlName="RAZAO_SOCIAL">
+      <input type="text" formControlName="razaoSocial">
     </div>
 
-    <div class="col-md-6 col-lg-5 col-xl-3">
+    <div class="col-lg-5 col-xl-4">
+      <label for="">Nome Fantasia *</label>
+      <input type="text" formControlName="nomeFantasia">
+    </div>
+
+    <div class="col-lg-6 col-xl-4">
       <label for="">CNPJ *</label>
-      <input type="text" formControlName="CNPJ">
+      <input type="text" formControlName="cnpj">
+    </div>
+
+    <div class="col-md- col-lg-6 col-xl-6">
+      <label for="">E-mail</label>
+      <input type="text" formControlName="email">
     </div>
 
     <div class="col-md- col-lg-12 col-xl-6">
-      <label for="">E-mail</label>
-      <input type="text" formControlName="EMAIL">
-    </div>
-
-    <div class="col-md- col-lg-12 col-xl-5">
       <label for="">Endereço</label>
-      <input type="text" formControlName="ENDERECO">
+      <input type="text" formControlName="endereco">
     </div>
 
-    <div class="col-md-6 col-lg-4 col-xl-2">
+    <div class="col-md-6 col-lg-4 col-xl-4">
       <label for="">Cidade</label>
-      <input type="text" formControlName="CIDADE">
+      <input type="text" formControlName="cidade">
     </div>
 
     <div class="col-md-6 col-lg-2 col-xl-2">
       <label for="">Estado</label>
-      <select
-        formControlName="ESTADO">
+      <select formControlName="estado">
         <option value="{{item.id}}" *ngFor="let item of UFList"> {{ item.name }}</option>
       </select>
     </div>
 
     <div class="col-md-6 col-lg-6 col-xl-3">
       <label for="">Telefone</label>
-      <input type="text" formControlName="TELEFONE">
+      <input type="text" formControlName="telefone">
     </div>
 
     <div class="col-md-6 col-lg-6 col-xl-3">
       <label for="">Data de Cadastro</label>
-      <input type="text" formControlName="DATA_CADASTRO">
+      <input type="text" formControlName="dataCadastro">
     </div>
 
-    <div class="col-md-6 col-lg-6 col-xl-3">
+    <div class="col-md-6 col-lg-6 col-xl-4">
       <label for="">Categoria </label>
-      <select formControlName="CATEGORIA">
+      <select formControlName="categoria">
         <option [value]="item.value" *ngFor="let item of categoriaOptions"> {{ item.name }}</option>
       </select>
     </div>
 
     <div class="col-md-6 col-lg-2 col-xl-2">
       <label for="">Status</label>
-      <select formControlName="STATUS">
+      <select formControlName="status">
         <option value="1">Ativo</option>
         <option value="0">Inativo</option>
       </select>
     </div>
 
-    <div class="col-md-6 col-lg-5 col-xl-2">
+    <div class="col-md-6 col-lg-5 col-xl-3">
       <label for="">Agência</label>
-      <input type="text" formControlName="AGENCIA">
+      <input type="text" formControlName="agencia">
     </div>
 
-    <div class="col-md-6 col-lg-5 col-xl-2">
+    <div class="col-md-6 col-lg-5 col-xl-3">
       <label for="">Conta</label>
-      <input type="text" formControlName="CONTA">
+      <input type="text" formControlName="conta">
     </div>
 
     <div class="col-12 d-flex justify-content-end">
       <button (click)="onCadastrar()" class="btn">Cadastrar</button>
     </div>
+    <div class="col-12">
+      <app-tabela
+        [displayedColumns]="displayedColumns"
+        [data]="dataList"
+        tittle="Estabelecimentos"
+        action="true">
+      </app-tabela>
+    </div>
   </form>
 </div>
+
+
+  
