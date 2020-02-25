@@ -2,61 +2,81 @@
 <div class="content">
   <form class="form-row" [formGroup]="estabelecimentoGroup">
     <div class="col-lg-7 col-xl-4">
-      <label for="">Razão Social *</label>
+      <label>Razão Social *</label>
       <input type="text" formControlName="razaoSocial">
+      <span class="small text-danger" *ngIf="validInput.razaoSocial">
+        Campo Razão Social obrigatório
+      </span>
     </div>
 
     <div class="col-lg-5 col-xl-4">
-      <label for="">Nome Fantasia *</label>
+      <label>Nome Fantasia</label>
       <input type="text" formControlName="nomeFantasia">
     </div>
 
     <div class="col-lg-6 col-xl-4">
-      <label for="">CNPJ *</label>
-      <input type="text" formControlName="cnpj">
+      <label>CNPJ *</label>
+      <input type="text" name="cnpj" (blur)="checkCNPJ()" mask="00.000.000/0000-00"
+        formControlName="cnpj">
+
+      <span class="small text-danger" *ngIf="validInput.incorrectCnpj">
+        Por favor, digite um CNPJ válido
+      </span>
+      <span class="small text-danger" *ngIf="validInput.requiredCnpj">
+        Campo CNPJ obrigatório
+      </span>
     </div>
 
     <div class="col-md- col-lg-6 col-xl-6">
-      <label for="">E-mail</label>
-      <input type="text" formControlName="email">
+      <label>E-mail</label>
+      <input (blur)="checkEmail()" type="text" formControlName="email">
+      <span class="small text-danger" *ngIf="validInput.email">
+        Por favor, digite um E-mail válido
+      </span>
     </div>
 
     <div class="col-md- col-lg-12 col-xl-6">
-      <label for="">Endereço</label>
+      <label>Endereço</label>
       <input type="text" formControlName="endereco">
     </div>
 
     <div class="col-md-6 col-lg-4 col-xl-4">
-      <label for="">Cidade</label>
+      <label>Cidade</label>
       <input type="text" formControlName="cidade">
     </div>
 
     <div class="col-md-6 col-lg-2 col-xl-2">
-      <label for="">Estado</label>
+      <label>Estado</label>
       <select formControlName="estado">
         <option value="{{item.id}}" *ngFor="let item of UFList"> {{ item.name }}</option>
       </select>
     </div>
 
     <div class="col-md-6 col-lg-6 col-xl-3">
-      <label for="">Telefone</label>
+      <label>Telefone</label>
       <input type="text" formControlName="telefone">
+      <span class="small text-danger" *ngIf="validInput.telefone">
+        Campo Telefone obrigatório para categoria Supermercado
+      </span>
     </div>
 
     <div class="col-md-6 col-lg-6 col-xl-3">
-      <label for="">Data de Cadastro</label>
-      <input type="text" formControlName="dataCadastro">
+      <label>Data de Cadastro</label>
+      <input (blur)="checkDate()" mask="00/00/0000" type="text" formControlName="dataCadastro">
+      <span class="small text-danger" *ngIf="validInput.incorrectDate">
+        Por favor, digite uma data válida
+      </span>
     </div>
 
     <div class="col-md-6 col-lg-6 col-xl-4">
-      <label for="">Categoria </label>
+      <label>Categoria </label>
       <select formControlName="categoria">
-        <option [value]="item.value" *ngFor="let item of categoriaOptions"> {{ item.name }}</option>
+        <option [value]="item.name" *ngFor="let item of categoriaOptions"> {{ item.name }}</option>
       </select>
     </div>
 
     <div class="col-md-6 col-lg-2 col-xl-2">
-      <label for="">Status</label>
+      <label>Status</label>
       <select formControlName="status">
         <option value="1">Ativo</option>
         <option value="0">Inativo</option>
@@ -64,28 +84,24 @@
     </div>
 
     <div class="col-md-6 col-lg-5 col-xl-3">
-      <label for="">Agência</label>
-      <input type="text" formControlName="agencia">
+      <label>Agência</label>
+      <input mask="000-0" type="text" [validation]="false" formControlName="agencia">
     </div>
 
     <div class="col-md-6 col-lg-5 col-xl-3">
-      <label for="">Conta</label>
-      <input type="text" formControlName="conta">
+      <label>Conta</label>
+      <input mask="00.000-0" type="text" [validation]="false" formControlName="conta">
     </div>
 
     <div class="col-12 d-flex justify-content-end">
-      <button (click)="onCadastrar()" class="btn">Cadastrar</button>
+      <button (click)="onCadastrar()" class="btn btn-success">Cadastrar</button>
     </div>
-    <div class="col-12">
-      <app-tabela
-        [displayedColumns]="displayedColumns"
-        [data]="dataList"
-        tittle="Estabelecimentos"
-        action="true">
+
+    <div class="col-auto d-flex justify-content-center mt-5">
+      <app-tabela [displayedColumns]="displayedColumns" [data]="dataList" tittle="Estabelecimentos" action="true"
+        (onDelete)="onDelete($event)"
+        (onSelect)="onSelect($event)">
       </app-tabela>
     </div>
   </form>
 </div>
-
-
-  

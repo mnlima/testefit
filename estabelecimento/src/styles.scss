@@ -2,14 +2,15 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+@import '~ngx-toastr/toastr';
+
 * {
   font-family: Helvetica, Arial, sans-serif;
-  color: #55606e;
 }
 
 html, body {
+  padding: 0 0 100px 0;
   height: 100%;
-  
   background: #edf0f2;
   box-sizing: border-box;
 }
@@ -25,13 +26,15 @@ select {
   border-radius: 3px;
 }
 
-.container {
-  
+.table {
+  color: #55606e;
 }
 
 .content {
-  width: 50%;
+  color: #55606e;
+  width: 60%;
   margin: auto;
+  margin-bottom: 100px;
   padding: 20px 30px;
   border-radius: 2px;
   background: #fff;
@@ -39,7 +42,6 @@ select {
 }
 
 button {
-  background: rgb(13, 219, 96) !important;
   margin-left: 0;
   margin-right: 0;
   text-transform: none;
@@ -55,5 +57,3 @@ button {
     opacity: .01 !important;
   }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
