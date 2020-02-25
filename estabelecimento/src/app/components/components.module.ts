@@ -1,12 +1,12 @@
-import { CardComponent } from './card/card.component';
 import { TabelaComponent } from './tabela/tabela.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalComponent } from './modal/modal.component';
+import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 
 @NgModule({
   declarations: [
     TabelaComponent,
-    CardComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   ],
   exports: [
     TabelaComponent,
-    CardComponent
   ]
+  
 })
 export class ComponentsModule { }

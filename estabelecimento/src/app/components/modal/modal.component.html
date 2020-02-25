@@ -1,0 +1,9 @@
+<div class="modal-header mb-3">
+  <h4 class="modal-title">{{title}}</h4>
+</div>
+<div class="modal-data" *ngFor="let titleKeys of keys" class="modal-body">
+  <span><b>{{titleKeys.label}}: </b></span><span> {{data[titleKeys.field]}}</span>
+</div>
+<div class="modal-footer mt-3">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

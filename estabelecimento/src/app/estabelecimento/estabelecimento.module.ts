@@ -8,19 +8,21 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { ComponentsModule } from './../components/components.module';
 import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/estabelecimento-cadastro.component';
-import { EstabelecimentoListagemComponent } from './estabelecimento-listagem/estabelecimento-listagem.component';
+import { ModalComponent } from '../components/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
  
 
 
 @NgModule({
   declarations: [
     EstabelecimentoCadastroComponent,
-    EstabelecimentoListagemComponent
+    ModalComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
     ComponentsModule,
     BrowserAnimationsModule,
     NgxMaskModule.forRoot(),
@@ -28,7 +30,9 @@ import { EstabelecimentoListagemComponent } from './estabelecimento-listagem/est
   ],
   exports: [
     EstabelecimentoCadastroComponent,
-    EstabelecimentoListagemComponent
+  ],
+  entryComponents: [
+    ModalComponent,
   ]
 })
 export class EstabelecimentoModule { }
