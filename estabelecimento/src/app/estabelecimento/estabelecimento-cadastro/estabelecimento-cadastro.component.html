@@ -54,7 +54,7 @@
 
     <div class="col-md-6 col-lg-6 col-xl-3">
       <label>Telefone</label>
-      <input type="text" formControlName="telefone">
+      <input type="text" formControlName="telefone" mask="(00) 0000-0000">
       <span class="small text-danger" *ngIf="validInput.telefone">
         Campo Telefone obrigatório para categoria Supermercado
       </span>
