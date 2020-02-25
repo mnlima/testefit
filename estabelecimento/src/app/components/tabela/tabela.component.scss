@@ -3,7 +3,7 @@ table {
 }
 tbody{
   tr {
-    opacity: .7;
+    opacity: .8;
     background-color: #f7f7f9;
     
     &:hover {
@@ -15,5 +15,10 @@ tbody{
   }
 }
 i { 
+  opacity: .7;
   color: #FF0000; 
+  &:hover {
+    color: rgb(170, 20, 0); 
+    opacity: 1;
+  }
 }

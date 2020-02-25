@@ -1,20 +1,27 @@
-<h3>{{tittle}}</h3>
+<div class="form-row">
+  <div class="col-12">
+    <h3 class="d-flex justify-content-center">{{tittle}}</h3>
 
-<div *ngIf="!data.length">
-  <span>Nenhum registro encontrado</span>
+    <div *ngIf="!data.length">
+      <span>Nenhum registro encontrado</span>
+    </div>
+
+    <table *ngIf="data.length" class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th *ngFor="let col of displayedColumns" scope="col">{{ col.label }}</th>
+          <th *ngIf="action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr (click)="selectRow(row)" class="table-list__row" *ngFor="let row of data; index as i ">
+          <td> {{ i+1 }}</td>
+          <td *ngFor="let col of displayedColumns"> {{ row[col.field] }}</td>
+          <td class="d-flex justify-content-center" (click)="delete(row)" *ngIf="action"><i class="fas fa-trash"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<table *ngIf="data.length" class="table table-striped">
-  <thead>
-    <tr>
-      <th *ngFor="let col of displayedColumns" scope="col">{{ col.label }}</th>
-      <th *ngIf="action">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-list__row" *ngFor="let row of data ">
-      <td *ngFor="let col of displayedColumns"> {{ row[col.field] }}</td>
-      <td class="d-flex justify-content-center" (click)="onDelete(row)" *ngIf="action"><i class="fas fa-trash"></i></td>
-    </tr>
-  </tbody>
-</table>

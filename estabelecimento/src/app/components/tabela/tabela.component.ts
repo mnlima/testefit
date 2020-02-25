@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-tabela',
@@ -11,16 +11,25 @@ export class TabelaComponent implements OnInit {
   @Input() displayedColumns: DisplayedColumnsModel[];
   @Input() action = false;
 
+  @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onSelect: EventEmitter<any> = new EventEmitter<any>();
+  isDelete;
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.displayedColumns);
-    console.log(this.data);
+  ngOnInit() { }
+
+  selectRow(row) {
+    if (this.isDelete) {
+      this.isDelete = false;
+      return;
+    }
+    this.onSelect.emit(row);
   }
 
-  onDelete(row) {
-    console.log('dele row:',row);
+  delete(row) {
+    this.onDelete.emit(row);
+    this.isDelete = true;
   }
 
 }
