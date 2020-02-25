@@ -9,6 +9,8 @@ import { EstabelecimentoService } from 'src/app/services/estabelecimento/estabel
 import { DisplayedColumnsModel } from './../../components/tabela/tabela.component';
 import { CNPJvalidator } from 'src/app/utils/cnpj.validator.utils';
 import { DateValidator } from 'src/app/utils/date.validator.utils';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'fit-estab-cadastro',
@@ -31,13 +33,28 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   ]
 
   displayedColumns: DisplayedColumnsModel[] = [
+    { label: 'CNPJ', field: 'cnpj' },
     { label: 'Razão Social', field: 'razaoSocial' },
-    { label: 'Nome Fantasia', field: 'nomeFantasia' },
-    { label: 'E-mail', field: 'email' },
     { label: 'Endereco', field: 'endereco' },
     { label: 'Categoria', field: 'categoria' },
     { label: 'Status', field: 'status' },
   ];
+
+  modalTitle = [
+    { label: 'Razão Social', field: 'razaoSocial' },
+    { label: 'Nome Fantasia', field: 'nomeFantasia' },
+    { label: 'CNPJ', field: 'cnpj' },
+    { label: 'E-mail', field: 'email' },
+    { label: 'Endereco', field: 'endereco' },
+    { label: 'Cidade', field: 'cidade' },
+    { label: 'Estado', field: 'estado' },
+    { label: 'Telefone', field: 'telefone' },
+    { label: 'Data de Cadastro', field: 'dataCadastro' },
+    { label: 'Categoria', field: 'categoria' },
+    { label: 'Status', field: 'status' },
+    { label: 'Agencia', field: 'agencia' },
+    { label: 'Conta', field: 'conta' },
+  ]
 
   UFList = [];
   estabelecimentoGroup: FormGroup;
@@ -50,6 +67,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     incorrectCnpj: false,
     incorrectDate: false,
   };
+
   setError: string = '';
   id: any;
   isEdit: boolean;
@@ -57,7 +75,8 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _estabelecimentoService: EstabelecimentoService,
-    private _toastService: ToastrService
+    private _toastService: ToastrService,
+    private _modalService: NgbModal
   ) {
     this.createForm()
   }
@@ -97,6 +116,9 @@ export class EstabelecimentoCadastroComponent implements OnInit {
 
   getEstabelecimentos() {
     this._estabelecimentoService.list().then(res => {
+      res.map(item => {
+        item.status = item.status ? 'Ativo' : 'Inativo';
+      })
       this.dataList = [...this.dataList, ...res];
     }, reject => {
       this.showToast('Erro ao consultar estabelecimentos', 'error');
@@ -109,7 +131,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
       this.checkInputIsValid();
       return;
     }
-    
+
     let message = 'Estabelecimento cadastrado com sucesso';
     let messageError = 'Erro ao realizar cadastro';
 
@@ -121,6 +143,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     this._estabelecimentoService.save(this.id, this.estabelecimentoGroup.value).then((res) => {
       if (res) {
         this.getEstabelecimentos();
+        this.resetForm();
         this.showToast(message);
         this.isEdit = false;
         this.id = '';
@@ -142,6 +165,15 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     }
   }
 
+  onView(row) {
+
+    const modalRef = this._modalService.open(ModalComponent);
+
+    modalRef.componentInstance.name = 'Estabelecimento';
+    modalRef.componentInstance.title = 'Estabelecimento';
+    modalRef.componentInstance.keys = this.modalTitle;
+    modalRef.componentInstance.data = row;
+  }
   onSelect(row) {
     this.estabelecimentoGroup.patchValue(row);
     this.isEdit = true;
@@ -162,6 +194,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   checkEmail() {
     this.setInputError('email', 'email');
   }
+
 
   checkCNPJ() {
     this.setInputError('cnpj', 'incorrect', 'incorrectCnpj');
@@ -215,13 +248,15 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     });
   }
 
-  resetForm(formGroup: FormGroup) {
+  resetForm() {
     let control: AbstractControl = null;
-    formGroup.reset();
-    formGroup.markAsUntouched();
-    Object.keys(formGroup.controls).forEach((name) => {
-      control = formGroup.controls[name];
+    this.estabelecimentoGroup.reset();
+    this.estabelecimentoGroup.markAsUntouched();
+    this.estabelecimentoGroup.markAsPristine();
+    Object.keys(this.estabelecimentoGroup.controls).forEach((name) => {
+      control = this.estabelecimentoGroup.controls[name];
       control.setErrors(null);
+      control.setValue({});
     });
   }
 
