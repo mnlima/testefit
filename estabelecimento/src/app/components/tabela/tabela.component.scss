@@ -14,11 +14,24 @@ tbody{
     }
   }
 }
-i { 
+.delete { 
+  display: inline;
+  
   opacity: .7;
   color: #FF0000; 
   &:hover {
     color: rgb(170, 20, 0); 
+    opacity: 1;
+  }
+}
+
+.view { 
+  display: inline;
+  margin-left: 10px;
+  opacity: .7;
+  color: #28a745; 
+  &:hover {
+    color: #108f2e; 
     opacity: 1;
   }
 }

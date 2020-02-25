@@ -1,6 +1,6 @@
 <div class="form-row">
   <div class="col-12">
-    <h3 class="d-flex justify-content-center">{{tittle}}</h3>
+    <h3 class="d-flex justify-content-center">{{title}}</h3>
 
     <div *ngIf="!data.length">
       <span>Nenhum registro encontrado</span>
@@ -18,8 +18,10 @@
         <tr (click)="selectRow(row)" class="table-list__row" *ngFor="let row of data; index as i ">
           <td> {{ i+1 }}</td>
           <td *ngFor="let col of displayedColumns"> {{ row[col.field] }}</td>
-          <td class="d-flex justify-content-center" (click)="delete(row)" *ngIf="action"><i class="fas fa-trash"></i>
-          </td>
+          <div class="col-12 mt-3">
+            <div class=" delete" (click)="delete(row)" *ngIf="action"><i class="fas fa-trash"></i></div>
+            <div class=" view" (click)="view(row)" *ngIf="action"><i class="fas fa-eye"></i></div>
+          </div>
         </tr>
       </tbody>
     </table>
