@@ -8,14 +8,12 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { ComponentsModule } from './../components/components.module';
 import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/estabelecimento-cadastro.component';
-import { EstabelecimentoListagemComponent } from './estabelecimento-listagem/estabelecimento-listagem.component';
  
 
 
 @NgModule({
   declarations: [
     EstabelecimentoCadastroComponent,
-    EstabelecimentoListagemComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +26,6 @@ import { EstabelecimentoListagemComponent } from './estabelecimento-listagem/est
   ],
   exports: [
     EstabelecimentoCadastroComponent,
-    EstabelecimentoListagemComponent
   ]
 })
 export class EstabelecimentoModule { }

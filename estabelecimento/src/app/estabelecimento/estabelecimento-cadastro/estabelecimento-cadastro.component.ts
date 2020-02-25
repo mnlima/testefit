@@ -57,7 +57,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _estabelecimentoService: EstabelecimentoService,
-    public _toastService: ToastrService
+    private _toastService: ToastrService
   ) {
     this.createForm()
   }
