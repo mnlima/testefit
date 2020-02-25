@@ -11,6 +11,6 @@ export class EstabelecimentoService extends CrudService<any> {
   constructor(
     protected http: HttpClient
   ) {
-    super(http, environment.apiUrl);
+    super(http);
   }
 }

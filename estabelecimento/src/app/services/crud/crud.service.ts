@@ -7,10 +7,10 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CrudService<T> {
+   _API_URL = environment.apiUrl;
 
   constructor(
-    protected http: HttpClient,
-    private _API_URL
+    protected http: HttpClient, 
   ) { }
 
   save(id, record) {
