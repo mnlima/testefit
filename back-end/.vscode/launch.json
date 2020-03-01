@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/estabelecimento.Api/bin/Debug/netcoreapp2.2/estabelecimento.Api.dll",
+            "program": "${workspaceFolder}/fitcard.api/bin/Debug/netcoreapp3.1/fitcard.api.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/estabelecimento.Api",
+            "cwd": "${workspaceFolder}/fitcard.api",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
