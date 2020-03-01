@@ -1,4 +1,4 @@
-<div class="form-row">
+<div class="form-row ">
   <div class="col-12">
     <h3 class="d-flex justify-content-center">{{title}}</h3>
 
@@ -6,7 +6,8 @@
       <span>Nenhum registro encontrado</span>
     </div>
 
-    <table *ngIf="data.length" class="table table-striped">
+  </div>
+    <table *ngIf="data.length" class="table col-12">
       <thead>
         <tr>
           <th>#</th>
@@ -25,5 +26,4 @@
         </tr>
       </tbody>
     </table>
-  </div>
 </div>
