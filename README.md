@@ -9,6 +9,7 @@
 
 ## Banco de dados
 informações do banco: 
+- Arquivo do banco: estabelecimento.sql, localizado na raiz do projeto
 - server: localhost
 - database: estabelecimento
 - user id: root
