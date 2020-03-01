@@ -68,6 +68,10 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     incorrectDate: false,
   };
 
+  textButton = {
+    icon: 'plus',
+    text: 'Cadastrar'
+  };
   setError: string = '';
   id: any;
   isEdit: boolean;
@@ -93,6 +97,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   createForm() {
     this.estabelecimentoGroup = this.fb.group(
       {
+        id: ['',],
         razaoSocial: ['', Validators.required],
         nomeFantasia: [''],
         cnpj: new FormControl('', {
@@ -116,10 +121,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
 
   getEstabelecimentos() {
     this._estabelecimentoService.list().then(res => {
-      res.map(item => {
-        item.status = item.status ? 'Ativo' : 'Inativo';
-      })
-      this.dataList = [...this.dataList, ...res];
+      this.dataList = res;
     }, reject => {
       this.showToast('Erro ao consultar estabelecimentos', 'error');
     });
@@ -142,22 +144,26 @@ export class EstabelecimentoCadastroComponent implements OnInit {
 
     this._estabelecimentoService.save(this.id, this.estabelecimentoGroup.value).then((res) => {
       if (res) {
-        this.getEstabelecimentos();
         this.resetForm();
-        this.showToast(message);
+
         this.isEdit = false;
         this.id = '';
       }
     }, reject => {
       this.showToast(messageError, 'error');
     }).finally(() => {
-
+      this.getEstabelecimentos();
+      this.showToast(message);
+      this.textButton.icon = 'plus';
+      this.textButton.text = 'Cadastrar';
     });
   }
 
   onDelete(row) {
     if (row.id) {
       this._estabelecimentoService.delete(row.id).then(res => {
+        console.log(res);
+        this.showToast(`Estabelecimento ${res['razaoSocial']} deletado com sucesso`);
         this.getEstabelecimentos();
       }, reject => {
         this.showToast('Erro ao deletar estabalecimento', 'error');
@@ -166,7 +172,6 @@ export class EstabelecimentoCadastroComponent implements OnInit {
   }
 
   onView(row) {
-
     const modalRef = this._modalService.open(ModalComponent);
 
     modalRef.componentInstance.name = 'Estabelecimento';
@@ -174,7 +179,10 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     modalRef.componentInstance.keys = this.modalTitle;
     modalRef.componentInstance.data = row;
   }
+
   onSelect(row) {
+    this.textButton.icon = 'edit';
+    this.textButton.text = 'Alterar';
     this.estabelecimentoGroup.patchValue(row);
     this.isEdit = true;
     this.id = row.id;

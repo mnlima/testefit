@@ -1,20 +1,23 @@
 .title {
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: auto;
   margin-bottom: 15px;
-  width: 60%;
-  border-radius: 3px;
-  height: 40px;
-  background: #0179C6;
-  box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.2);
+  width: auto;
+  height: auto;
+  background: rgb(85, 115, 134);
+  box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.4);
 
   span {
+    display: flex;
     color: #ffffff;
     font-size: 25px;
-    font-weight: bold;
+    justify-content: center;
+    align-items: center;
     text-transform: uppercase;
   }
   
+  .fitcard {
+    font-weight: bold;
+    font-size: 50px;
+  }
 }

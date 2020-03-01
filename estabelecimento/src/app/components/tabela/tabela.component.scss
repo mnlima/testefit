@@ -1,5 +1,6 @@
 table {
   margin: 25px 0 0;
+  flex-wrap: wrap;
 }
 tbody{
   tr {
@@ -14,9 +15,9 @@ tbody{
     }
   }
 }
+
 .delete { 
   display: inline;
-  
   opacity: .7;
   color: #FF0000; 
   &:hover {

@@ -1,4 +1,7 @@
-<div class="col-12 d-flex justify-content-center title title-collor"><span>Estabelecimento</span></div>
+<div class="form-row title">
+  <span class="col-12 fitcard">Teste Fit Card</span>
+  <span class="col-12">Cadastro de Estabelecimentos</span>
+</div>
 <div class="content">
   <form class="form-row" [formGroup]="estabelecimentoGroup">
     <div class="col-lg-7 col-xl-4">
@@ -94,10 +97,11 @@
     </div>
 
     <div class="col-12 d-flex justify-content-end">
-      <button (click)="onCadastrar()" class="btn btn-success">Cadastrar</button>
+      {{textButon}}
+      <button (click)="onCadastrar()" class="btn btn-success"><i class="fas fa-{{textButton.icon}}"></i> {{textButton.text}}</button>
     </div>
 
-    <div class="col-auto d-flex justify-content-center mt-5">
+    <div class="col-12 d-flex align-items-center justify-content-center">
       <app-tabela [displayedColumns]="displayedColumns" [data]="dataList" title="Estabelecimentos" action="true"
         (onDelete)="onDelete($event)"
         (onView)="onView($event)"
