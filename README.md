@@ -5,7 +5,8 @@
 - estando na pasta back-end/fitcard.api execute o comando `dotnet run` no terminal
 
 ### Executar a Aplicação Angular
-- Estando na pasta estabelecimento/ execute o comando `ng serve --open` no terminal
+
+- Estando na pasta estabelecimento/ execute o comando `npm i`(somente a primeira vez) e depois `ng serve --open`
 
 ## Banco de dados
 informações do banco: 
